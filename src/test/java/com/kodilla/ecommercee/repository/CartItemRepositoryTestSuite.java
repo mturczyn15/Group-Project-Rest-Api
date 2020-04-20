@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -26,7 +25,6 @@ public class CartItemRepositoryTestSuite {
         CartItem cartItem = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
 
@@ -45,19 +43,16 @@ public class CartItemRepositoryTestSuite {
         CartItem cartItem1 = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
         CartItem cartItem2 = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
         CartItem cartItem3 = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
 
@@ -80,7 +75,6 @@ public class CartItemRepositoryTestSuite {
         CartItem cartItem = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
 
@@ -101,7 +95,6 @@ public class CartItemRepositoryTestSuite {
         CartItem cartItem = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
-                .products(new ArrayList<>())
                 .productName("cheese")
                 .build();
 

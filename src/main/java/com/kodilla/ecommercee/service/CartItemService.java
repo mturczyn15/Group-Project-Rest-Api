@@ -1,12 +1,10 @@
 package com.kodilla.ecommercee.service;
 
-import com.kodilla.ecommercee.domain.Cart;
-import com.kodilla.ecommercee.domain.CartItem;
-import com.kodilla.ecommercee.domain.CartItemDto;
-import com.kodilla.ecommercee.domain.EntityNotFoundException;
+import com.kodilla.ecommercee.domain.*;
 import com.kodilla.ecommercee.mapper.CartItemMapper;
 import com.kodilla.ecommercee.repository.CartItemRepository;
 import com.kodilla.ecommercee.repository.CartRepository;
+import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +23,9 @@ public class CartItemService {
     @Autowired
     private CartRepository cartRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
 
     public List<CartItemDto> getCartItems() {
         return cartItemMapper.mapToDtoList(cartItemRepository.findAll());
@@ -40,7 +41,9 @@ public class CartItemService {
     public CartItemDto create(CartItemDto cartItemDto) throws EntityNotFoundException {
         Cart cart = cartRepository.findById(cartItemDto.getCartId())
                 .orElseThrow(() -> new EntityNotFoundException(Cart.class, cartItemDto.getCartId()));
-        CartItem cartItem = cartItemMapper.mapToCartItem(cartItemDto, cart);
+        Product product =  productRepository.findById(cartItemDto.getProductId())
+                .orElseThrow(() -> new EntityNotFoundException(Product.class, cartItemDto.getProductId()));
+        CartItem cartItem = cartItemMapper.mapToCartItem(cartItemDto, cart, product);
         return cartItemMapper.mapToCartItemDto(cartItemRepository.save(cartItem));
     }
 
@@ -48,7 +51,9 @@ public class CartItemService {
         cartItemRepository.findById(cartItemDto.getId());
         Cart cart = cartRepository.findById(cartItemDto.getCartId())
                 .orElseThrow(() -> new EntityNotFoundException(Cart.class, cartItemDto.getCartId()));
-        return cartItemMapper.mapToCartItemDto(cartItemRepository.save(cartItemMapper.mapToCartItem(cartItemDto, cart)));
+        Product product =  productRepository.findById(cartItemDto.getProductId())
+                .orElseThrow(() -> new EntityNotFoundException(Product.class, cartItemDto.getProductId()));
+        return cartItemMapper.mapToCartItemDto(cartItemRepository.save(cartItemMapper.mapToCartItem(cartItemDto, cart, product)));
     }
 
     public void deleteCartItem(final Long cartItemId) {

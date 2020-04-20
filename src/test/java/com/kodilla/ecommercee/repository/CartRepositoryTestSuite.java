@@ -28,19 +28,16 @@ public class CartRepositoryTestSuite {
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
                 .productName("cheese")
-                .products(new ArrayList<>())
                 .build();
         CartItem cartItem2 = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
                 .productName("cheese")
-                .products(new ArrayList<>())
                 .build();
         CartItem cartItem3 = CartItem.builder()
                 .addedDate(LocalDate.of(2003, 12, 3))
                 .priceDate(LocalDate.of(2005, 12, 4))
                 .productName("cheese")
-                .products(new ArrayList<>())
                 .build();
         Cart cart = Cart.builder()
                 .cartDate(LocalDate.of(2003, 12, 7))

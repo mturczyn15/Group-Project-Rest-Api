@@ -1,7 +1,10 @@
 package com.kodilla.ecommercee.mapper;
 
 
-import com.kodilla.ecommercee.domain.*;
+import com.kodilla.ecommercee.domain.Cart;
+import com.kodilla.ecommercee.domain.CartItem;
+import com.kodilla.ecommercee.domain.CartItemDto;
+import com.kodilla.ecommercee.domain.Product;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,10 +13,10 @@ import java.util.stream.Collectors;
 @Component
 public class CartItemMapper {
 
-    public CartItem mapToCartItem(final CartItemDto cartItemDto, final Cart cart) {
+    public CartItem mapToCartItem(final CartItemDto cartItemDto, final Cart cart, final Product product) {
         return CartItem.builder()
                 .id(cartItemDto.getId())
-                .productId(cartItemDto.getProductId())
+                .product(product)
                 .productName(cartItemDto.getProductName())
                 .priceDate(cartItemDto.getPriceDate())
                 .productCount(cartItemDto.getProductCount())
@@ -28,7 +31,7 @@ public class CartItemMapper {
                 .build();
         return new CartItemDto(
                 cartItem.getId(),
-                cartItem.getProductId(),
+                cartItem.getProduct().getId(),
                 cartItem.getCart().getId(),
                 cartItem.getProductName(),
                 cartItem.getPriceDate(),

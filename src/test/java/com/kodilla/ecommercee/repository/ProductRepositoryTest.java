@@ -4,13 +4,13 @@ import com.kodilla.ecommercee.EcommerceeApplication;
 import com.kodilla.ecommercee.domain.CartItem;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.Product;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -37,7 +37,7 @@ public class ProductRepositoryTest {
         CartItem cartItem = new CartItem();
         group.setGroupName("grupa");
         group.setDescription("opis grupy");
-        cartItem.setProductId(1L);
+        cartItem.setProduct(product);
         cartItem.setProductName(product.getProductName());
         cartItem.setPriceDate(LocalDate.now());
         cartItem.setProductCount(100L);
@@ -47,7 +47,6 @@ public class ProductRepositoryTest {
         product.setProductName("telewizor");
         product.setQuantity(666);
         product.setGroup(group);
-        product.setCartItem(cartItem);
         groupRepository.save(group);
         cartItemRepository.save(cartItem);
         productRepository.save(product);
@@ -56,8 +55,6 @@ public class ProductRepositoryTest {
         //Then
         Assert.assertEquals("telewizor", dbProduct.get().getProductName());
         Assert.assertEquals("grupa", dbProduct.get().getGroup().getGroupName());
-        Assert.assertEquals(LocalDate.of(2020,10,10),
-                dbProduct.get().getCartItem().getAddedDate());
     }
     @Test
     public void findAllTest() {
